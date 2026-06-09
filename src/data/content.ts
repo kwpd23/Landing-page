@@ -174,7 +174,7 @@ export const STACK: StackItem[] = [
 
 export const ABOUT = {
   paragraphs: [
-    'Me dedico al desarrollo de software desde hace más de seis años. En ese tiempo he construido herramientas a nivel personal, institucional y comercial: desde proyectos propios hasta sistemas que hoy usan organizaciones y empresas todos los días.',
+    'Soy Eric Cisneros y me dedico al desarrollo de software desde hace más de seis años. En ese tiempo he construido herramientas a nivel personal, institucional y comercial: desde proyectos propios hasta sistemas que hoy usan organizaciones y empresas todos los días.',
     'Trabajo de principio a fin: hablo con quien tiene el problema, diseño la solución, escribo el código y lo dejo funcionando en producción. Sin intermediarios y sin diluir responsabilidades.',
   ],
   levels: [

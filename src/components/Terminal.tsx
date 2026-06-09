@@ -110,7 +110,7 @@ export default function Terminal() {
         <span className="term-dot" />
         <span className="term-dot" />
         <span className="term-dot" />
-        <span className="term-title">eric@taller — sh</span>
+        <span className="term-title">buildwitheric — sh</span>
       </div>
       <div
         className="term-body"

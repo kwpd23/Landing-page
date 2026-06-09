@@ -36,7 +36,9 @@ export default function Nav() {
     <nav className={`nav ${scrolled ? 'nav-scrolled' : ''}`}>
       <a href="#top" className="nav-logo">
         <LogoMark />
-        <span>Eric Cisneros</span>
+        <span className="wordmark">
+          build<span className="wordmark-dim">with</span>eric
+        </span>
       </a>
       <div className="nav-links">
         <a href="#sobre-mi">Sobre mí</a>

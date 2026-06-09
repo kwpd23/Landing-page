@@ -156,6 +156,9 @@ h1, h2, h3 {
   text-decoration: none;
 }
 
+.wordmark { letter-spacing: -0.02em; }
+.wordmark-dim { opacity: 0.5; font-weight: 500; }
+
 .nav-links { display: flex; gap: var(--space-4); align-items: center; }
 .nav-links a {
   font-size: 0.95rem;
