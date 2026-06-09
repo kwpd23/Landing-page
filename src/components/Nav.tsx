@@ -4,10 +4,17 @@ function LogoMark() {
   // Marca geométrica: cuadrado redondeado + slash ("código / oficio")
   return (
     <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
-      <rect width="64" height="64" rx="14" fill="var(--clay-500)" />
+      <defs>
+        <linearGradient id="logo-grad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#ff8a3d" />
+          <stop offset="0.5" stopColor="#c44fe8" />
+          <stop offset="1" stopColor="#635bff" />
+        </linearGradient>
+      </defs>
+      <rect width="64" height="64" rx="14" fill="url(#logo-grad)" />
       <path
         d="M38 17 26 47"
-        stroke="var(--paper)"
+        stroke="#fff"
         strokeWidth="5"
         strokeLinecap="round"
       />
