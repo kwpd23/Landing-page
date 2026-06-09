@@ -29,7 +29,7 @@ export default function Stack() {
     <section className="section section-sunken" id="stack">
       <div className="container">
         <div className={`section-head ${head.revealClass}`} ref={head.ref}>
-          <p className="kicker">Stack tecnológico</p>
+          <p className="kicker">Tecnologías</p>
           <h2>Las herramientas del oficio</h2>
           <p className="section-lede">
             Elegimos la herramienta según el problema, no al revés.

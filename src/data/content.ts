@@ -1,5 +1,10 @@
 export const CONTACT_EMAIL = 'kwpd23@gmail.com'
 
+export const SOCIAL = {
+  linkedin: 'https://www.linkedin.com/in/eric-cisneros-/',
+  github: 'https://github.com/kwpd23',
+}
+
 export type IconName =
   | 'code'
   | 'cpu'
@@ -12,6 +17,8 @@ export type IconName =
   | 'copy'
   | 'check'
   | 'arrow-right'
+  | 'linkedin'
+  | 'github'
 
 export interface Service {
   icon: IconName
@@ -22,7 +29,7 @@ export interface Service {
 export const SERVICES: Service[] = [
   {
     icon: 'code',
-    title: 'Backends y APIs',
+    title: 'Backend y APIs',
     text: 'Servicios que aguantan carga real. Diseñamos la arquitectura, escribimos el código y lo dejamos corriendo en producción.',
   },
   {
@@ -33,7 +40,7 @@ export const SERVICES: Service[] = [
   {
     icon: 'database',
     title: 'Datos y automatización',
-    text: 'Pipelines, reportes y herramientas internas. Convertimos procesos manuales en sistemas que trabajan por ti.',
+    text: 'Flujos de datos, reportes y herramientas internas. Convertimos procesos manuales en sistemas que trabajan por ti.',
   },
 ]
 
@@ -55,14 +62,14 @@ export const PROJECTS: Project[] = [
     title: 'Motor de cotización en tiempo real',
     langs: 'rust · sql',
     description:
-      'API de pricing para una fintech: cotizaciones de divisas con latencia p99 menor a 8 ms. Reescritura de un servicio legado en Node a Rust con Axum y Tokio.',
-    problem: 'El servicio anterior colapsaba con picos de más de 3 000 req/s.',
+      'API de precios para una fintech: cotizaciones de divisas con latencia p99 menor a 8 ms. Reescritura de un servicio heredado en Node a Rust con Axum y Tokio.',
+    problem: 'El servicio anterior colapsaba con picos de más de 3 000 peticiones por segundo.',
     solution:
-      'Arquitectura async sin locks, cache en memoria con TTL y circuit breakers.',
+      'Arquitectura asíncrona sin bloqueos, caché en memoria con expiración y cortacircuitos ante fallos.',
     result: '14 veces menos latencia y un cuarto del costo de infraestructura.',
     metrics: [
-      { label: 'p99', value: '7.8 ms' },
-      { label: 'throughput', value: '12k req/s' },
+      { label: 'latencia p99', value: '7.8 ms' },
+      { label: 'rendimiento', value: '12k pet/s' },
       { label: 'infraestructura', value: '−75 % costo' },
     ],
     tags: ['Rust', 'Axum', 'Tokio', 'PostgreSQL', 'Redis'],
@@ -72,24 +79,24 @@ export const PROJECTS: Project[] = [
     title: 'Telemetría agrícola en campo',
     langs: 'c · python',
     description:
-      'Firmware en C para sensores de humedad y temperatura, con gateway en Python que agrega y reenvía datos por LoRa hacia la nube.',
+      'Firmware en C para sensores de humedad y temperatura, con una pasarela en Python que agrega y reenvía datos por LoRa hacia la nube.',
     problem: 'Sensores a batería que debían durar temporadas completas sin mantenimiento.',
     solution:
-      'Deep-sleep agresivo y un protocolo binario propio de 12 bytes por lectura.',
+      'Modo de bajo consumo agresivo y un protocolo binario propio de 12 bytes por lectura.',
     result: '11 meses de batería medidos en campo, con más de 40 nodos operando.',
     metrics: [
       { label: 'batería', value: '11 meses' },
-      { label: 'payload', value: '12 bytes' },
+      { label: 'datos por lectura', value: '12 bytes' },
       { label: 'nodos', value: '40+' },
     ],
     tags: ['C', 'ESP32', 'LoRa', 'Python', 'MQTT'],
   },
   {
     icon: 'chart',
-    title: 'Plataforma de datos para retail',
+    title: 'Plataforma de datos para comercio minorista',
     langs: 'python · sql',
     description:
-      'ETL que consolida las ventas de más de 30 sucursales en un warehouse central. Modelado dimensional, dbt y dashboards que el área comercial usa a diario.',
+      'Proceso que consolida las ventas de más de 30 sucursales en un almacén de datos central. Modelado dimensional, dbt y tableros que el área comercial usa a diario.',
     problem: 'Reportes manuales en Excel que tardaban 3 días por cada cierre de mes.',
     solution:
       'Ingesta incremental, modelo estrella y validaciones automáticas de calidad de datos.',
@@ -109,14 +116,14 @@ export const PROJECTS: Project[] = [
       'Herramienta de línea de comandos para una firma legal: AES-256-GCM, derivación de claves con Argon2 y verificación de integridad incorporada.',
     problem: 'Respaldos sensibles viajando sin cifrar a almacenamiento externo.',
     solution:
-      'Binario único multiplataforma con streaming de archivos grandes, sin cargarlos en RAM.',
+      'Binario único multiplataforma que procesa los archivos en flujo, sin cargarlos en memoria.',
     result: 'Cifra 1 GB en unos 4 segundos; integrada al respaldo nocturno.',
     metrics: [
       { label: 'velocidad', value: '~250 MB/s' },
       { label: 'binario', value: '3.1 MB' },
       { label: 'dependencias', value: 'mínimas' },
     ],
-    tags: ['Rust', 'C', 'AES-GCM', 'Argon2', 'CLI'],
+    tags: ['Rust', 'C', 'AES-GCM', 'Argon2', 'Terminal'],
   },
 ]
 
@@ -132,7 +139,7 @@ export const STACK: StackItem[] = [
     name: 'Rust',
     level: 5,
     description:
-      'Servicios de alto rendimiento, CLIs y sistemas donde la memoria y la concurrencia importan.',
+      'Servicios de alto rendimiento, herramientas de terminal y sistemas donde la memoria y la concurrencia importan.',
     snippet: 'cargo build --release',
   },
   {
@@ -146,28 +153,28 @@ export const STACK: StackItem[] = [
     name: 'Python',
     level: 5,
     description:
-      'APIs con FastAPI, automatización, scraping y todo el ecosistema de datos.',
+      'APIs con FastAPI, automatización, extracción de datos y todo el ecosistema de análisis.',
     snippet: 'uvicorn app:api --reload',
   },
   {
     name: 'SQL',
     level: 5,
     description:
-      'Modelado, optimización de queries y warehouses. PostgreSQL como primera opción.',
+      'Modelado, optimización de consultas y almacenes de datos. PostgreSQL como primera opción.',
     snippet: 'EXPLAIN ANALYZE SELECT ...',
   },
   {
     name: 'Arquitectura',
     level: 4,
     description:
-      'Microservicios cuando hacen falta, monolitos cuando convienen. Eventos, colas y cache.',
+      'Microservicios cuando hacen falta, monolitos cuando convienen. Eventos, colas y caché.',
     snippet: 'docker compose up -d',
   },
   {
     name: 'Infraestructura',
     level: 3,
     description:
-      'Linux, Docker, CI/CD con GitHub Actions y despliegues en AWS o en tu propio servidor.',
+      'Linux, Docker, integración y despliegue continuos con GitHub Actions, en AWS o en tu propio servidor.',
     snippet: 'ssh deploy@prod systemctl status',
   },
 ]
@@ -205,14 +212,14 @@ export const TESTIMONIALS: Testimonial[] = [
     quote:
       'Tomó un servicio que se nos caía cada semana y lo dejó estable. Hoy ni pensamos en él, simplemente funciona.',
     role: 'Líder de tecnología',
-    sector: 'Fintech',
+    sector: 'Sector financiero',
     initials: 'LT',
   },
   {
     quote:
       'Entiende el problema de negocio, no solo el código. Nos propuso algo más simple de lo que pedíamos y nos ahorró meses.',
     role: 'Dirección de operaciones',
-    sector: 'Retail',
+    sector: 'Comercio minorista',
     initials: 'DO',
   },
   {
@@ -233,7 +240,7 @@ export const PROCESS_STEPS = [
   {
     num: '02',
     title: 'Definimos',
-    text: 'Alcance, stack, arquitectura y plazos por escrito. Sabes exactamente qué se construye, en cuánto tiempo y a qué costo.',
+    text: 'Alcance, tecnologías, arquitectura y plazos por escrito. Sabes exactamente qué se construye, en cuánto tiempo y a qué costo.',
   },
   {
     num: '03',
@@ -248,15 +255,15 @@ export const PROCESS_STEPS = [
 ]
 
 export const HERO_PHRASES = [
-  'backends y APIs de alto rendimiento',
+  'backend y APIs de alto rendimiento',
   'sistemas embebidos y firmware',
-  'plataformas y pipelines de datos',
+  'plataformas y flujos de datos',
   'herramientas internas y automatización',
 ]
 
 export const STATS = [
   { value: 6, suffix: '+', label: 'años de experiencia' },
-  { value: 20, suffix: '+', label: 'proyectos entregados' },
-  { value: 99, suffix: '.9 %', label: 'uptime en producción' },
-  { value: 24, suffix: ' h', label: 'máximo para responderte' },
+  { value: 4, suffix: '', label: 'lenguajes principales' },
+  { value: 24, suffix: ' h', label: 'tiempo de respuesta' },
+  { value: 100, suffix: ' %', label: 'del código es tuyo' },
 ]

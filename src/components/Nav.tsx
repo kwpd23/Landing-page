@@ -44,7 +44,7 @@ export default function Nav() {
         <a href="#sobre-mi">Sobre mí</a>
         <a href="#servicios">Servicios</a>
         <a href="#proyectos">Proyectos</a>
-        <a href="#stack">Stack</a>
+        <a href="#stack">Tecnologías</a>
         <a href="#testimonios">Testimonios</a>
         <a href="#contacto" className="nav-cta">Hablemos</a>
       </div>
