@@ -4,11 +4,11 @@ import { STATS } from '../data/content'
 function Stat({ value, suffix, label }: { value: number; suffix: string; label: string }) {
   const { ref, value: current } = useCountUp(value)
   return (
-    <div className="stat reveal visible">
-      <span className="stat-num" ref={ref as React.RefObject<HTMLSpanElement>}>
+    <div className="stat">
+      <span className="stat-value" ref={ref as React.RefObject<HTMLSpanElement>}>
         {current}
+        <span className="stat-suffix">{suffix}</span>
       </span>
-      <span className="stat-plus">{suffix}</span>
       <span className="stat-label">{label}</span>
     </div>
   )
@@ -17,9 +17,11 @@ function Stat({ value, suffix, label }: { value: number; suffix: string; label: 
 export default function Stats() {
   return (
     <section className="stats">
-      {STATS.map((s) => (
-        <Stat key={s.label} {...s} />
-      ))}
+      <div className="container stats-row">
+        {STATS.map((s) => (
+          <Stat key={s.label} {...s} />
+        ))}
+      </div>
     </section>
   )
 }

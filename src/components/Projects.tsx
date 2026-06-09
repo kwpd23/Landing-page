@@ -1,15 +1,16 @@
 import { useState } from 'react'
 import { PROJECTS, type Project } from '../data/content'
 import { useReveal } from '../hooks/useReveal'
+import Icon from './Icon'
 
 function ProjectCard({ project }: { project: Project }) {
   const [open, setOpen] = useState(false)
-  const ref = useReveal<HTMLElement>()
+  const { ref, revealClass } = useReveal<HTMLElement>()
 
   return (
     <article
       ref={ref}
-      className={`project reveal ${open ? 'open' : ''}`}
+      className={`project ${revealClass} ${open ? 'open' : ''}`}
       tabIndex={0}
       onClick={() => setOpen((o) => !o)}
       onKeyDown={(e) => {
@@ -20,26 +21,19 @@ function ProjectCard({ project }: { project: Project }) {
       }}
     >
       <div className="project-top">
-        <span className="project-icon">{project.icon}</span>
-        <div className="project-langbar">
-          {project.langBar.map((seg) => (
-            <span
-              key={seg.lang}
-              className={`lb ${seg.lang}`}
-              style={{ width: `${seg.pct}%` }}
-              title={`${seg.lang} ${seg.pct}%`}
-            />
-          ))}
-        </div>
+        <span className="project-icon">
+          <Icon name={project.icon} size={20} />
+        </span>
+        <span className="project-langs">{project.langs}</span>
       </div>
       <h3>{project.title}</h3>
       <p className="project-desc">{project.description}</p>
       <div className="project-detail">
-        <ul>
-          <li><strong>Problema:</strong> {project.problem}</li>
-          <li><strong>Solución:</strong> {project.solution}</li>
-          <li><strong>Resultado:</strong> {project.result}</li>
-        </ul>
+        <dl>
+          <div><dt>Problema</dt><dd>{project.problem}</dd></div>
+          <div><dt>Solución</dt><dd>{project.solution}</dd></div>
+          <div><dt>Resultado</dt><dd>{project.result}</dd></div>
+        </dl>
         <div className="metrics">
           {project.metrics.map((m) => (
             <div className="metric" key={m.label}>
@@ -51,39 +45,41 @@ function ProjectCard({ project }: { project: Project }) {
       </div>
       <div className="tags">
         {project.tags.map((t) => (
-          <span key={t.name} className={`tag ${t.kind ? `t-${t.kind}` : ''}`}>
-            {t.name}
-          </span>
+          <span key={t} className="tag">{t}</span>
         ))}
       </div>
-      <span className="project-expand">{open ? '− cerrar' : '+ detalles'}</span>
+      <span className="project-expand">
+        {open ? 'Cerrar detalle' : 'Ver detalle técnico'}
+      </span>
     </article>
   )
 }
 
 export default function Projects() {
-  const headRef = useReveal<HTMLDivElement>()
-  const noteRef = useReveal<HTMLParagraphElement>()
+  const head = useReveal<HTMLDivElement>()
+  const note = useReveal<HTMLParagraphElement>()
 
   return (
     <section className="section" id="proyectos">
-      <div className="section-head reveal" ref={headRef}>
-        <span className="section-tag">~/proyectos</span>
-        <h2>Trabajo seleccionado</h2>
-        <p>
-          Algunos sistemas que he diseñado y construido. Haz clic en cada
-          tarjeta para ver los detalles técnicos.
+      <div className="container">
+        <div className={`section-head ${head.revealClass}`} ref={head.ref}>
+          <p className="kicker">Proyectos</p>
+          <h2>Trabajo seleccionado</h2>
+          <p className="section-lede">
+            Sistemas que diseñamos y construimos de punta a punta. Abre cada
+            tarjeta para ver el detalle técnico.
+          </p>
+        </div>
+        <div className="projects-grid">
+          {PROJECTS.map((p) => (
+            <ProjectCard key={p.title} project={p} />
+          ))}
+        </div>
+        <p className={`projects-note ${note.revealClass}`} ref={note.ref}>
+          Proyectos representativos del tipo de trabajo que realizamos. Los
+          detalles de clientes se mantienen bajo acuerdo de confidencialidad.
         </p>
       </div>
-      <div className="projects">
-        {PROJECTS.map((p) => (
-          <ProjectCard key={p.title} project={p} />
-        ))}
-      </div>
-      <p className="projects-note reveal" ref={noteRef}>
-        * Proyectos representativos del tipo de trabajo que realizo. Detalles
-        de clientes bajo NDA.
-      </p>
     </section>
   )
 }

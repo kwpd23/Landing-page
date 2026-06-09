@@ -1,8 +1,13 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-/** Añade la clase "visible" cuando el elemento entra al viewport. */
+/**
+ * Revela el elemento cuando entra al viewport.
+ * Devuelve el ref y la clase a aplicar ("reveal" / "reveal visible"),
+ * gestionada como estado de React para que sobreviva a re-renders.
+ */
 export function useReveal<T extends HTMLElement>() {
   const ref = useRef<T>(null)
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     const el = ref.current
@@ -10,7 +15,7 @@ export function useReveal<T extends HTMLElement>() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.classList.add('visible')
+          setVisible(true)
           observer.disconnect()
         }
       },
@@ -20,5 +25,5 @@ export function useReveal<T extends HTMLElement>() {
     return () => observer.disconnect()
   }, [])
 
-  return ref
+  return { ref, revealClass: visible ? 'reveal visible' : 'reveal' }
 }

@@ -1,19 +1,20 @@
 import { STACK } from '../data/content'
 import { useReveal } from '../hooks/useReveal'
 
-function StackCard({ name, level, description, snippet, accent }: (typeof STACK)[number]) {
-  const ref = useReveal<HTMLDivElement>()
+function StackCard({ name, level, description, snippet }: (typeof STACK)[number]) {
+  const { ref, revealClass } = useReveal<HTMLDivElement>()
   return (
-    <div
-      className="stack-card reveal"
-      ref={ref}
-      style={{ '--accent-color': accent } as React.CSSProperties}
-    >
+    <div className={`stack-card ${revealClass}`} ref={ref}>
       <div className="stack-head">
         <span className="stack-name">{name}</span>
-        <span className="stack-level">
-          {'▰'.repeat(level)}
-          {'▱'.repeat(5 - level)}
+        <span
+          className="stack-level"
+          role="img"
+          aria-label={`Nivel ${level} de 5`}
+        >
+          {Array.from({ length: 5 }, (_, i) => (
+            <span key={i} className={`level-seg ${i < level ? 'on' : ''}`} />
+          ))}
         </span>
       </div>
       <p>{description}</p>
@@ -23,21 +24,22 @@ function StackCard({ name, level, description, snippet, accent }: (typeof STACK)
 }
 
 export default function Stack() {
-  const headRef = useReveal<HTMLDivElement>()
+  const head = useReveal<HTMLDivElement>()
   return (
-    <section className="section" id="stack">
-      <div className="section-head reveal" ref={headRef}>
-        <span className="section-tag">~/stack</span>
-        <h2>Lenguajes y herramientas</h2>
-        <p>
-          Elijo la herramienta según el problema, no al revés. Pasa el cursor
-          sobre cada lenguaje.
-        </p>
-      </div>
-      <div className="stack-grid">
-        {STACK.map((s) => (
-          <StackCard key={s.name} {...s} />
-        ))}
+    <section className="section section-sunken" id="stack">
+      <div className="container">
+        <div className={`section-head ${head.revealClass}`} ref={head.ref}>
+          <p className="kicker">Stack tecnológico</p>
+          <h2>Las herramientas del oficio</h2>
+          <p className="section-lede">
+            Elegimos la herramienta según el problema, no al revés.
+          </p>
+        </div>
+        <div className="stack-grid">
+          {STACK.map((s) => (
+            <StackCard key={s.name} {...s} />
+          ))}
+        </div>
       </div>
     </section>
   )

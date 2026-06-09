@@ -1,5 +1,5 @@
 import { useTypewriter } from '../hooks/useTypewriter'
-import { CONTACT_EMAIL, HERO_PHRASES } from '../data/content'
+import { HERO_PHRASES } from '../data/content'
 import Terminal from './Terminal'
 
 export default function Hero() {
@@ -8,25 +8,25 @@ export default function Hero() {
   return (
     <header className="hero" id="top">
       <div className="hero-content">
-        <p className="hero-pre">{'// hola, mundo'}</p>
+        <p className="kicker">Desarrollo de software a medida</p>
         <h1 className="hero-title">
-          Soy <span className="accent">Eric Cisneros</span>.<br />
-          Construyo software que<br />
-          <span className="hero-rotator">
-            {phrase}
-            <span className="caret">▌</span>
-          </span>
+          Construimos el <span className="accent">software</span> que tu
+          negocio necesita.
         </h1>
         <p className="hero-sub">
-          Ingeniería de software a medida: sistemas de alto rendimiento,
-          backends sólidos y arquitecturas de datos que escalan. De la idea al
-          deploy, sin humo.
+          Diseñamos, programamos y lanzamos sistemas que de verdad usan tus
+          clientes: backends, dispositivos conectados y plataformas de datos.
+          Sin humo ni plantillas genéricas.
+        </p>
+        <p className="hero-spec">
+          <span className="hero-rotator">
+            {phrase}
+            <span className="caret" />
+          </span>
         </p>
         <div className="hero-actions">
-          <a href="#proyectos" className="btn btn-primary">Ver proyectos ↓</a>
-          <a href={`mailto:${CONTACT_EMAIL}`} className="btn btn-ghost">
-            {CONTACT_EMAIL}
-          </a>
+          <a href="#contacto" className="btn btn-primary">Empecemos tu proyecto</a>
+          <a href="#proyectos" className="btn btn-secondary">Ver proyectos</a>
         </div>
       </div>
       <Terminal />
