@@ -172,6 +172,58 @@ export const STACK: StackItem[] = [
   },
 ]
 
+export const ABOUT = {
+  paragraphs: [
+    'Me dedico al desarrollo de software desde hace más de seis años. En ese tiempo he construido herramientas a nivel personal, institucional y comercial: desde proyectos propios hasta sistemas que hoy usan organizaciones y empresas todos los días.',
+    'Trabajo de principio a fin: hablo con quien tiene el problema, diseño la solución, escribo el código y lo dejo funcionando en producción. Sin intermediarios y sin diluir responsabilidades.',
+  ],
+  levels: [
+    {
+      label: 'Personal',
+      text: 'Proyectos propios y herramientas de código abierto donde experimento y afino el oficio.',
+    },
+    {
+      label: 'Institucional',
+      text: 'Sistemas para organizaciones: telemetría en campo, plataformas de datos y automatización de procesos.',
+    },
+    {
+      label: 'Comercial',
+      text: 'Productos y APIs para empresas, con requisitos reales de rendimiento, seguridad y disponibilidad.',
+    },
+  ],
+}
+
+export interface Testimonial {
+  quote: string
+  role: string
+  sector: string
+  initials: string
+}
+
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    quote:
+      'Tomó un servicio que se nos caía cada semana y lo dejó estable. Hoy ni pensamos en él, simplemente funciona.',
+    role: 'Líder de tecnología',
+    sector: 'Fintech',
+    initials: 'LT',
+  },
+  {
+    quote:
+      'Entiende el problema de negocio, no solo el código. Nos propuso algo más simple de lo que pedíamos y nos ahorró meses.',
+    role: 'Dirección de operaciones',
+    sector: 'Retail',
+    initials: 'DO',
+  },
+  {
+    quote:
+      'Comunicación clara y entregas puntuales cada semana. Quedamos con todo documentado y sin depender de nadie.',
+    role: 'Coordinación de proyectos',
+    sector: 'Sector institucional',
+    initials: 'CP',
+  },
+]
+
 export const PROCESS_STEPS = [
   {
     num: '01',
